@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+ - 2.1.5
+ dist: trusty
+ sudo: false
+
+branches:
+  only:
+  - integrating-travis-ci
+
+before_install:
+  - gem install bundler
+
+install:
+  - bundle install
+  - bundle exec rails db:setup

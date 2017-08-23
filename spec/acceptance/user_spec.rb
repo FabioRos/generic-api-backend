@@ -1,6 +1,8 @@
 require 'rspec_api_documentation/dsl'
 
 resource 'User' do
+
+=begin
   post '/api/auth' do
     header 'Host', 'my-new-app.moku.io'
     header 'Accept', 'application/vnd.my-new-app.v1+json'
@@ -35,7 +37,7 @@ resource 'User' do
       expect(status).to eq(401)
     end
   end
-
+=end
 
   # get '/api/patients', authorized: true do           # Any controller action that need authentication!
   #   header 'Host', 'my-new-app.moku.io'
