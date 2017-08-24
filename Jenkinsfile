@@ -1,5 +1,19 @@
 pipeline {
     agent { docker 'ruby' }
+
+    stage('Install bundle') {
+      steps {
+        sh 'bash --login -c "bundle install"'
+      }
+    }
+
+    stage('Ensure database') {
+      steps {
+        sh 'bash --login -c "bundle exec rake db:create db:migrate"'
+      }
+    }
+
+
     stages {
         stage('build') {
             steps {
