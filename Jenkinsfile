@@ -8,7 +8,7 @@ pipeline {
         stage('Setup') {
                   steps {
                     sh '''
-                     cp config/database.yml.example config/database.yml
+                     cp config/application.yml.example config/application.yml
                      bundle install
                      rake db:create
                      rake db:schema:load
