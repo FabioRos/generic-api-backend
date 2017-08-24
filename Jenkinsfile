@@ -5,17 +5,20 @@ pipeline {
 
 
     stages {
-        stage('Install bundle') {
+        stage('Setup') {
                   steps {
-                    sh 'bash --login -c "bundle install"'
+                    sh '''
+                     cp config/database.yml.example config/database.yml
+                     bundle install
+                     rake db:create
+                     rake db:schema:load
+                     rake db:test:prepare
+                     rake ci:setup:rspec spec RAILS_ENV=test
+                    '''
+
                   }
                 }
 
-                stage('Ensure database') {
-                  steps {
-                    sh 'bash --login -c "bundle exec rake db:create db:migrate"'
-                  }
-                }
         stage('build') {
             steps {
                 sh 'ruby --version'
