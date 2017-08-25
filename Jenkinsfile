@@ -5,20 +5,6 @@ pipeline {
 
 
     stages {
-        stage('Setup') {
-                  steps {
-                    sh '''
-                     cp config/application.example.yml config/application.yml
-                     bundle install
-                     rake db:create
-                     rake db:schema:load
-                     rake db:test:prepare
-                     rake ci:setup:rspec spec RAILS_ENV=test
-                    '''
-
-                  }
-                }
-
         stage('build') {
             steps {
                 sh 'ruby --version'
