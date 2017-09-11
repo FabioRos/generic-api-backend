@@ -71,6 +71,9 @@ group :development do
 
   # Preview emails in browser
   gem 'letter_opener'
+
+  gem 'rubocop'
+  gem 'rubocop-checkstyle_formatter', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
