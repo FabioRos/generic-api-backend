@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="rails-api-backend-preconfigured">Rails API backend preconfigured</h1>
+
+<blockquote>
+  <p>To goal of this project is to have a production-ready deploy of an Rails 4 API backend in a few minutes.</p>
+</blockquote>
+
+<p>It is a blank Rails app, preconfigured with:
+- basic authentication via token (<a href="https://github.com/plataformatec/devise">Devise</a> + <a href="https://github.com/ryanb/cancan">CanCan</a> + <a href="https://github.com/lynndylanhurley/devise_token_auth">Devise Token Auth</a>);
+- full deploy setup (<a href="https://github.com/capistrano/capistrano">Capistrano</a> + <a href="http://nginx.org/">nginx</a> + <a href="https://github.com/puma/puma">puma</a>);
+- auto generate SSL certificate for HTTPS (and auto renew) with <a href="https://letsencrypt.org">Let’s Encrypt</a>﻿; 
+- gems for API testing and documentation (<a href="https://github.com/zipmark/rspec_api_documentation">RSpec API documentation</a> + <a href="https://github.com/modeset/apitome">Apitome</a>);
+- basic administration backend (<a href="https://github.com/gregbell/active_admin">ActiveAdmin</a>);
+- CORS and URL regex (<a href="https://github.com/cyu/rack-cors">rack-cors</a>);
+- API versioning via headers.</p>
+
+<p>Deployment stack is the following:
+- Rails 5;
+- Capistrano 3;
+- nginx configured via Capistrano task;
+- Puma configured via Capistrano task;
+- crontab with <a href="https://github.com/javan/whenever">whenever</a>;
+- asynchronous jobs with <a href="https://github.com/collectiveidea/delayed_job">delayed-job</a>﻿;
+- auto backups for PostgreSQL;
+- environment variables with <a href="https://github.com/laserlemon/figaro">figaro</a>;
+- error notification with <a href="https://github.com/airbrake/airbrake">airbrake</a>﻿;
+- both production and staging environments configured for Capistrano/nginx/puma;
+- configurable exception notification via email (<a href="https://github.com/smartinez87/exception_notification">exception_notification</a>).</p>
+
+<p>See wiki article on how setup the server accordingly (TODO).</p>
+
+<h2 id="getting-started">Getting started</h2>
+<ul>
+  <li>copy entire folder (including hidden file .rspec)</li>
+  <li>rename project name module</li>
+  <li>nome git</li>
+  <li>nome database</li>
+  <li>update application.yml da application.example.yml</li>
+  <li>nome app su deploy.rb</li>
+  <li>indirizzo server</li>
+  <li>setup Airbrake</li>
+  <li>edit this README</li>
+</ul>
+
+<p>rake db:migrate</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<ol>
+  <li>Fork it</li>
+  <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+  <li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+  <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+  <li>Create new Pull Request</li>
+</ol>
+
+<h1 id="basic-commands">Basic commands</h1>
+
+<h2 id="import-sample-data-for-development-purpose">Import sample data for development purpose</h2>
+<p><code>sh
+rake dev_setup:import_sample_data
+</code></p>
+
+<h2 id="deploy-last-develop-branch-in-staging-environment">Deploy last develop branch in staging environment</h2>
+<p><code>sh
+cap staging deploy
+</code></p>
+
+<h2 id="deploy-revision-a56ffeaed78a80a6d3afebfeaee1c1e4da3775b9-in-staging-environment">Deploy revision a56ffeaed78a80a6d3afebfeaee1c1e4da3775b9 in staging environment</h2>
+<p><code>sh
+REVISION=f37d74ab7ec1fba90e21444299000128e7783a86 cap staging deploy
+</code></p>
+
+<h2 id="deploy-a-feature-branch-not-local-branch-you-have-to-publish-with-git-flow-publish">Deploy a feature branch (not local branch, you have to publish with git-flow publish)</h2>
+<p><code>sh
+REVISION=feature/ZAT-557-capistrano-setup cap staging deploy
+</code></p>
+
+<h2 id="deploy-last-master-branch-in-production-environment">Deploy last master branch in production environment:</h2>
+<p><code>sh
+REVISION=master cap production deploy
+</code>
+Notice: it’s strongly suggested to make a revision with git-flow release</p>
+
+<h2 id="extra-commands">Extra commands</h2>
+<p>### Restart
+<code>sh
+cap &lt;env&gt; deploy:restart
+</code></p>
+
+<h3 id="restart-nginx">Restart nginx</h3>
+<p><code>sh
+cap &lt;env&gt; nginx:restart
+cap &lt;env&gt; nginx:reload
+</code></p>
+
+<h3 id="list-capistrano-tasks">List Capistrano tasks</h3>
+<p><code>sh
+cap -vT
+</code></p>
+
+<h3 id="logs">Logs</h3>
+<p>Staging:
+<code>sh
+ssh deploy@serveraddress.com
+cd ~/apps/appname_production/current/log/
+</code></p>
+
+<p>Production
+<code>sh
+ssh deploy@serveraddress.com
+cd ~/apps/appname_production/current
+</code></p>
+
+<h3 id="console">Console</h3>
+<p>Staging:
+<code>sh
+ssh deploy@stagingddress.com
+cd ~/apps/appname_staging/current
+RAILS_ENV=staging bundle exec rails c
+</code></p>
+
+<p>Production:
+<code>sh
+ssh deploy@serveraddress.com
+cd ~/apps/appname_production/current
+RAILS_ENV=production bundle exec rails c
+</code></p>
+
+<h3 id="clear-delayed-jobs-queue">Clear delayed jobs queue</h3>
+<p><code>sh
+ssh deploy@stagingddress.com
+cd ~/apps/appname_staging/current
+RAILS_ENV=staging bundle exec rake jobs:clear
+</code></p>
+
+<h1 id="frontend">Frontend</h1>
+
+<h2 id="password-reset">Password reset</h2>
+
+<p><a href="https://github.com/lynndylanhurley/ng-token-auth#password-reset-flow">Password reset flow</a></p>
+
+<ul>
+  <li>ng-token-auth will <a href="http://localhost:3017/docs/user/password_reset">POST /api/auth/password</a> with two params: email and redirect_url.</li>
+  <li>Backend will send an email to the user with a reset url.</li>
+  <li>When user click on the link in the email, backend validates the token and redirect to frontend (redirect_url), passing a 6 hours temporary session (uid, token, client_id…) that let the user to change his password.</li>
+</ul>
+
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Sep 12 09:19:08 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.3.3).
+</div>
+
+    </div>
+  </body>
+</html>

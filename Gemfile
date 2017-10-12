@@ -109,6 +109,8 @@ gem 'figaro'
 gem 'paperclip'
 # gem 'aws-sdk', '>= 2.0'
 
+gem 'yard'
+
 gem 'delayed_job_active_record'
 gem 'delayed_job', github: 'collectiveidea/delayed_job'  # TEMP rails 5
 gem 'daemons' # Needed by delayed_job
